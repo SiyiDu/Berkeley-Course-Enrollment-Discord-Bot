@@ -8,9 +8,21 @@ venv/
 
 # Environment variables
 .env
+.env.*
+!.env.example
 
 # Logs
 *.log
+
+# Local data
+*.db
+*.sqlite
+*.sqlite3
+course_index.json
+enrollments.json
+users.json
+memory/data/
+memory/workspace/
 
 # VSCode settings
 .vscode/

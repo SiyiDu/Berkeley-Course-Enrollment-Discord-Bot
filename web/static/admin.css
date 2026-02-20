@@ -1,0 +1,191 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap");
+
+:root {
+  color-scheme: light;
+  --bg: #f5f5f7;
+  --surface: #ffffff;
+  --text: #1d1d1f;
+  --muted: #6e6e73;
+  --border: #e5e5ea;
+  --accent: #0071e3;
+  --accent-ink: #ffffff;
+  --shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Instrument Sans", "Sora", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(900px 480px at 12% 0%, #f0f0f2 0%, transparent 55%),
+    radial-gradient(900px 520px at 90% -10%, #f7f7fa 0%, transparent 55%),
+    linear-gradient(180deg, #f6f6f8 0%, #ffffff 60%, #fbfbfd 100%);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 40px;
+}
+
+.brand {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.top-actions .link {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.admin {
+  padding: 0 40px 40px;
+  display: grid;
+  gap: 24px;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid #e5e5ea;
+  border-radius: 18px;
+  padding: 20px 22px;
+  box-shadow: var(--shadow);
+}
+
+.panel h1 {
+  margin: 0 0 6px;
+  font-size: 22px;
+}
+
+.panel p {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.token-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.token-row input {
+  flex: 1;
+  min-width: 220px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #d2d2d7;
+  font-size: 14px;
+}
+
+.token-row button,
+.ghost,
+.primary {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  background: var(--accent);
+  color: var(--accent-ink);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.ghost {
+  background: #ffffff;
+  border: 1px solid #d2d2d7;
+  color: var(--text);
+}
+
+.actions-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.status {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.proposals {
+  margin-top: 14px;
+  display: grid;
+  gap: 12px;
+}
+
+.proposal {
+  border: 1px solid #e5e5ea;
+  border-radius: 14px;
+  padding: 14px;
+  display: grid;
+  gap: 8px;
+}
+
+.proposal h3 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.proposal p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.proposal .meta {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.proposal .actions {
+  display: flex;
+  gap: 8px;
+}
+
+.proposal .actions button {
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid #d2d2d7;
+  background: #ffffff;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.proposal .actions button.approve {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+}
+
+@media (max-width: 720px) {
+  .topbar {
+    padding: 18px 20px;
+  }
+
+  .admin {
+    padding: 0 20px 32px;
+  }
+}

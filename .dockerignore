@@ -1,0 +1,15 @@
+.git
+.gitignore
+.venv
+__pycache__
+*.pyc
+.env
+.env.*
+*.db
+*.sqlite
+*.sqlite3
+memory/data
+memory/workspace
+course_index.json
+enrollments.json
+users.json

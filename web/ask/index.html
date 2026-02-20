@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Knowledge Engine</title>
+    <link rel="stylesheet" href="/static/styles.css?v=6" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">Knowledge Engine</div>
+      <div class="top-actions">
+        <button class="icon-button" type="button" aria-label="New session">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.6" fill="none" />
+          </svg>
+        </button>
+        <button class="icon-button" type="button" aria-label="Profile">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="9" r="3.2" stroke="currentColor" stroke-width="1.6" fill="none" />
+            <path d="M5 19c1.7-3.4 11.3-3.4 14 0" stroke="currentColor" stroke-width="1.6" fill="none" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="hero">
+      <h1>What can I help with?</h1>
+      <div class="scope-card">
+        <div class="scope-header">
+          <div class="scope-title">Scope (optional)</div>
+          <button id="clear-scope" type="button" class="scope-clear">Clear</button>
+        </div>
+        <div class="scope-field">
+          <label class="scope-label" for="professor">Professor name</label>
+          <input id="professor" type="text" placeholder="Type a professor name" autocomplete="off" />
+          <div id="professor-suggestions" class="suggestions"></div>
+        </div>
+        <div class="course-grid">
+          <div class="scope-field">
+            <label class="scope-label" for="course-dept">Department</label>
+            <select id="course-dept"></select>
+          </div>
+          <div class="scope-field">
+            <label class="scope-label" for="course-number">Course code</label>
+            <input id="course-number" type="text" placeholder="e.g. CS61B" autocomplete="off" />
+            <div id="course-suggestions" class="suggestions"></div>
+          </div>
+        </div>
+      </div>
+      <form class="ask-form" id="ask-form" autocomplete="off">
+        <div class="ask-pill">
+          <button class="pill-icon" type="button" aria-label="Attach context">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.6" fill="none" />
+            </svg>
+          </button>
+          <label class="sr-only" for="query">Ask a question</label>
+          <input
+            id="query"
+            name="query"
+            type="text"
+            placeholder="Ask anything"
+            spellcheck="false"
+          />
+          <div class="pill-actions">
+            <button class="pill-icon" type="button" aria-label="Voice input">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="9" y="4.5" width="6" height="9" rx="3" stroke="currentColor" stroke-width="1.6" fill="none" />
+                <path d="M6.5 10.5v1.3a5.5 5.5 0 0 0 11 0v-1.3" stroke="currentColor" stroke-width="1.6" fill="none" />
+                <path d="M12 17.5v2.5" stroke="currentColor" stroke-width="1.6" fill="none" />
+              </svg>
+            </button>
+            <button class="pill-send" type="submit" aria-label="Send">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" fill="none" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </form>
+      <div class="result" id="result" aria-live="polite"></div>
+      <p class="hint">Answers include verified cards and evidence when available.</p>
+    </main>
+
+    <script src="/static/runtime-config.js?v=1"></script>
+    <script src="/static/config.js?v=6"></script>
+    <script src="/static/app.js?v=6"></script>
+  </body>
+</html>

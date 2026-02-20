@@ -1,0 +1,19 @@
+CREATE TABLE IF NOT EXISTS bot_users (
+  user_id VARCHAR(64) PRIMARY KEY,
+  student_id VARCHAR(32) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  updated_at TEXT NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS bot_enrollments (
+  user_id VARCHAR(64) NOT NULL,
+  slug VARCHAR(128) NOT NULL,
+  created_at TEXT NOT NULL,
+  PRIMARY KEY (user_id, slug)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS bot_course_index (
+  slug VARCHAR(128) PRIMARY KEY,
+  container_id VARCHAR(64) NOT NULL,
+  thread_id VARCHAR(64) NOT NULL,
+  updated_at TEXT NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

@@ -1,0 +1,26 @@
+name: Rollback
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        options:
+          - staging
+          - production
+        required: true
+      revision:
+        description: "Optional revision/tag to roll back to"
+        required: false
+        default: ""
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Roll back
+        run: |
+          chmod +x deploy/rollback.sh
+          ./deploy/rollback.sh "${{ inputs.environment }}" "${{ inputs.revision }}"
