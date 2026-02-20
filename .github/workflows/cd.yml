@@ -1,0 +1,31 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+
+jobs:
+  deploy-staging:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy staging
+        run: |
+          chmod +x deploy/deploy.sh
+          ./deploy/deploy.sh staging "${GITHUB_SHA}"
+
+  deploy-production:
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy production
+        run: |
+          chmod +x deploy/deploy.sh
+          ./deploy/deploy.sh production "${GITHUB_REF_NAME}"

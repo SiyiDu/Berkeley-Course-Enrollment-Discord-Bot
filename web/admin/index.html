@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Knowledge Engine Admin</title>
+    <link rel="stylesheet" href="/static/admin.css?v=3" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">Knowledge Engine</div>
+      <div class="top-actions">
+        <a class="link" href="/ask">Ask</a>
+      </div>
+    </header>
+
+    <main class="admin">
+      <section class="panel">
+        <h1>Admin Console</h1>
+        <p>Sign in to run extraction and review proposals.</p>
+        <div class="token-row">
+          <input id="username" type="text" placeholder="Username" />
+          <input id="password" type="password" placeholder="Password" />
+          <button id="login">Sign in</button>
+        </div>
+        <div class="actions-row">
+          <button id="extract" class="primary">Run extraction</button>
+          <button id="refresh" class="ghost">Refresh proposals</button>
+        </div>
+        <div id="status" class="status"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Proposals</h2>
+        </div>
+        <div id="proposals" class="proposals"></div>
+      </section>
+    </main>
+
+    <script src="/static/runtime-config.js?v=1"></script>
+    <script src="/static/config.js?v=3"></script>
+    <script src="/static/admin.js?v=3"></script>
+  </body>
+</html>

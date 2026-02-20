@@ -1,0 +1,75 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: berkeley
+      POSTGRES_PASSWORD: berkeley
+      POSTGRES_DB: berkeley
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  engine:
+    build:
+      context: .
+      dockerfile: engine/Dockerfile
+    environment:
+      DATABASE_URL: postgresql://berkeley:berkeley@db:5432/berkeley
+      ENGINE_HOST: 0.0.0.0
+      ENGINE_PORT: 8000
+      ENGINE_ENV: dev
+      ENGINE_RUN_JOBS_INLINE: "false"
+      LOG_LEVEL: INFO
+      BOT_INGEST_TOKEN: dev-bot-token
+      ADMIN_TOKEN: dev-admin-token
+      ADMIN_USERNAME: admin
+      ADMIN_PASSWORD: admin
+      CONTEXT_TOKEN_SECRET: dev-context-secret
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  worker:
+    build:
+      context: .
+      dockerfile: engine/Dockerfile
+    command: python -m engine.berkeley_engine.worker
+    environment:
+      DATABASE_URL: postgresql://berkeley:berkeley@db:5432/berkeley
+      ENGINE_ENV: dev
+      LOG_LEVEL: INFO
+    depends_on:
+      - db
+
+  web:
+    build:
+      context: .
+      dockerfile: web/Dockerfile
+    environment:
+      ENGINE_BASE_URL: http://localhost:8000
+    ports:
+      - "5173:80"
+    depends_on:
+      - engine
+
+  discord_bot:
+    build:
+      context: .
+      dockerfile: discord_bot/Dockerfile
+    environment:
+      BOT_STORAGE_BACKEND: db
+      BOT_DATABASE_URL: postgresql://berkeley:berkeley@db:5432/berkeley
+      ENGINE_BASE_URL: http://engine:8000
+      CLIENT_ID: discord_bot
+      CLIENT_TOKEN: dev-client-token
+      BOT_INGEST_TOKEN: dev-bot-token
+      BOT_TOKEN: ${BOT_TOKEN}
+      GUILD_ID: ${GUILD_ID}
+    depends_on:
+      - engine
+      - db
+
+volumes:
+  db_data:
